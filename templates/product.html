@@ -1,0 +1,47 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Product List</title>
+    <style>
+        h1 {
+            color: #e9601a;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+        <li><a href="/">Return Homepage</a></li>
+    </ul>
+    
+  </body>
+</html>-->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Product</h1>
+
+{% if product %}
+    <table class="table is-striped is-fullwidth">
+      <tr>
+        <th>Name : </th>
+        <td>
+          {{ product.name }}    
+        </td>
+      </tr>
+      <tr>
+            <th>Price : </th>
+          <td>
+            {{ product.price }}
+          </td>
+      </tr>
+      <tr>
+            <th>Amount : </th>
+            <td>
+                {{ product.amount }}
+            </td>
+        </tr>
+    </table>
+{% endif %}
+{% endblock %}

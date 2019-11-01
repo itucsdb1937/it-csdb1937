@@ -1,0 +1,51 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Product List</title>
+    <style>
+        h1 {
+            color: #e9601a;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+        <li><a href="/">Return Homepage</a></li>
+    </ul>
+    
+  </body>
+</html>-->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Products</h1>
+
+
+{% if products %}
+<form action="" method="POST" name="product_list">
+  <table class="table">
+    {% for product_key, product in products %}
+    
+    <tr>
+          <td>
+              <label class="checkbox">
+                  <input type="checkbox" name="product_keys" value="{{ product_key }}"/>
+              </label>
+              <a href="{{url_for('selected_product_page', product_key = product_key)}}"> {{product.name}} </a>
+          </td>
+          <td> {{product.price}}</td>
+          <td>{{product.amount}}  </td> 
+      </tr>
+    {% endfor %}
+  </table>
+  <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-danger is-small">Delete</button>
+      </div>
+  </div>
+</form>
+    
+{% endif %}
+{% endblock %}

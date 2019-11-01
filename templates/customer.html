@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Customers</h1>
+<p>All customers listed here.</p>
+<!--{% if customers %}
+    <table class="table">
+      {% for customer_key, customer in customers %}
+      
+      <tr>
+            <td><a href="{{url_for('selected_customer_page', customer_key = customer_key)}}">              
+                {{customer.name}}                                        
+                </a>
+            </td>
+            <td> {{customer.id}}</td>
+            <td>{{customer.surname}}  </td>
+            
+        
+        </tr>
+      {% endfor %}
+    </table>
+{% endif %}-->
+{% endblock %}
