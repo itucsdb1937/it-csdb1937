@@ -24,27 +24,35 @@
 
 
 {% if products %}
-<form action="" method="POST" name="product_list">
-  <table class="table">
+<form action="" method="POST" name="product_list" style="text-align: center;">
+  <table border = "1" class="table" style="margin: 0 auto;" >
     {% for product_key, product in products %}
     
     <tr>
           <td>
+              {% if current_user.is_admin %}
               <label class="checkbox">
                   <input type="checkbox" name="product_keys" value="{{ product_key }}"/>
               </label>
+              {% endif %}
               <a href="{{url_for('selected_product_page', product_key = product_key)}}"> {{product.name}} </a>
           </td>
           <td> {{product.price}}</td>
-          <td>{{product.amount}}  </td> 
+          <td>{{product.amount}}  </td>
+          <td> {{product.type}}</td>
+          <td> {{product.brand}}</td>
+
       </tr>
     {% endfor %}
   </table>
+  {% if current_user.is_admin %}
   <div class="field is-grouped">
       <div class="control">
         <button class="button is-danger is-small">Delete</button>
       </div>
   </div>
+  {% endif %}
+
 </form>
     
 {% endif %}

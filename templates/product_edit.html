@@ -3,27 +3,66 @@
 {% block content %}
     <h1 class="title">Edit Product</h1>
 
-    <form action="" method="post" name="product_edit">
+    <form action="" method="post" name="product_edit" style="text-align: center;">
       <div class="field">
         <label for="name" class="label">Name</label>
         <div class="control">
-          <input type="text" name="name" class="input" required="required"/>
+          <input type="text" name="name" class="input" required="required" value="{{ values['name'] }}"/>
         </div>
+        {% if 'name' in values.errors %}
+        <p class="help has-background-warning">
+            {{ values.errors['name'] }}
+        </p>
+        {% endif %}
       </div>
 
       <div class="field">
         <label for="price" class="label">Price</label>
         <div class="control">
-          <input type="number" name="price" class="input"/>
+          <input type="number" step=0.01 name="price" class="input" value="{{ values['price'] }}"/>
         </div>
+        {% if 'price' in values.errors %}
+        <p class="help has-background-warning">
+            {{ values.errors['price'] }}
+        </p>
+        {% endif %}
       </div>
 
       <div class="field">
         <label for="amount" class="label">Amount</label>
         <div class="control">
-          <input type="number" name="amount" class="input"/>
+          <input type="number" name="amount" class="input" value="{{ values['amount'] }}"/>
         </div>
+        {% if 'amount' in values.errors %}
+        <p class="help has-background-warning">
+            {{ values.errors['amount'] }}
+        </p>
+        {% endif %}
       </div>
+
+      <div class="field">
+          <label for="type" class="label">Type</label>
+          <div class="control">
+            <input type="text" name="type" class="input" required="required" value="{{ values['type'] }}"/>
+          </div>
+          {% if 'type' in values.errors %}
+          <p class="help has-background-warning">
+              {{ values.errors['type'] }}
+          </p>
+          {% endif %}
+        </div>
+
+        <div class="field">
+            <label for="brand" class="label">Brand</label>
+            <div class="control">
+              <input type="text" name="brand" class="input" required="required" value="{{ values['brand'] }}"/>
+            </div>
+            {% if 'brand' in values.errors %}
+            <p class="help has-background-warning">
+                {{ values.errors['brand'] }}
+            </p>
+            {% endif %}
+          </div>
 
       <div class="field is-grouped">
         <div class="control">

@@ -23,7 +23,7 @@
 <h1>Product</h1>
 
 {% if product %}
-    <table class="table is-striped is-fullwidth">
+    <table border="1" class="table is-striped is-fullwidth" style="margin: 0 auto;">
       <tr>
         <th>Name : </th>
         <td>
@@ -42,6 +42,29 @@
                 {{ product.amount }}
             </td>
         </tr>
+        <tr>
+            <th>Type : </th>
+            <td>
+                {{ product.type }}
+            </td>
+        </tr>
+        <tr>
+            <th>Brand : </th>
+            <td>
+                {{ product.brand }}
+            </td>
+        </tr>
     </table>
+
+    {% if current_user.is_authenticated %}
+    <div class="field is-grouped">
+        <div class="control">
+          <a class="button is-primary is-outlined is-small"
+            href="{{ request.path }}/edit">Edit</a>
+          
+          
+        </div>
+      </div>
+      {% endif %}
 {% endif %}
 {% endblock %}

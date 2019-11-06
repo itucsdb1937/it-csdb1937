@@ -2,56 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Tracksonware</title>    
-    <style>
-            h1 {
-            color: #e9601a;
-            text-align: center;
-            }
-            
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-
-li {
-  border-right: 1px solid #bbb;
-}
-
-li:last-child {
-  border-right: none;
-}
-body {margin:0;}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-li.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-li:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-    </style>
+    <title>Tracksonware</title>
+    <link rel="stylesheet" href="/static/product.css"/>    
+    
   </head>
   <body>
         <header>
@@ -60,14 +13,32 @@ li:hover:not(.active) {
                     <li><a href="{{ url_for('home_page') }}">Return Homepage</a></li>
                     <li class="active"><a href="{{ url_for('product_page') }}">Show Product List</a></li>
                     <li ><a href="{{ url_for('customer_page') }}">Show Customer List</a></li>
-                    <li class="active"><a href="{{ url_for('product_add_page') }}">Add Product</a></li>
+                    {% if current_user.is_admin %}
+                      <li class="active"><a href="{{ url_for('product_add_page') }}">Add Product</a></li>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                      <li><a href="{{ url_for('login_page') }}">Log in</a></li>
+                    {% else %}
+                      {{ current_user.username }}
+                      <li><a href="{{ url_for('logout_page') }}">Log out</a></li>
+                     {% endif %}
                   </ul>
                 </nav>
+                <br><br>
         </header>
-    <div style="padding:20px;margin-top:30px;">
-        {% block content %}{% endblock %}
-    </div>
+    
+    <main style="text-align: center;">
+      
+      {% for message in get_flashed_messages() %}
+      <div class="notification is-info">{{ message }}</div>
+      {% endfor %}
 
+    <section class="section">
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+    </section>
+    </main>
     <footer style="text-align: center;">
       <small>&copy; 2019, TracksonWare</small>
     </footer>
