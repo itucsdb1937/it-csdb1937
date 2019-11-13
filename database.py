@@ -1,6 +1,5 @@
 from product import Product
 import psycopg2 as dbapi2
-<<<<<<< HEAD
 #import os
 #dsn = os.getenv('DATABASE_URL')
 
