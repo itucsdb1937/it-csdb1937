@@ -1,0 +1,70 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Product List</title>
+    <style>
+        h1 {
+            color: #e9601a;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <ul>
+        <li><a href="/">Return Homepage</a></li>
+    </ul>
+    
+  </body>
+</html>-->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Product</h1>
+
+{% if product %}
+    <table border="1" class="table is-striped is-fullwidth" style="margin: 0 auto;">
+      <tr>
+        <th>Name : </th>
+        <td>
+          {{ product.name }}    
+        </td>
+      </tr>
+      <tr>
+            <th>Price : </th>
+          <td>
+            {{ product.price }}
+          </td>
+      </tr>
+      <tr>
+            <th>Amount : </th>
+            <td>
+                {{ product.amount }}
+            </td>
+        </tr>
+        <tr>
+            <th>Type : </th>
+            <td>
+                {{ product.type }}
+            </td>
+        </tr>
+        <tr>
+            <th>Brand : </th>
+            <td>
+                {{ product.brand }}
+            </td>
+        </tr>
+    </table>
+
+    {% if current_user.is_authenticated %}
+    <div class="field is-grouped">
+        <div class="control">
+          <a class="button is-primary is-outlined is-small"
+            href="{{ request.path }}/edit">Edit</a>
+          
+          
+        </div>
+      </div>
+      {% endif %}
+{% endif %}
+{% endblock %}
