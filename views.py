@@ -1,20 +1,23 @@
 from flask import render_template, current_app, abort, request, url_for, redirect, flash
 from datetime import datetime
 from product import Product
-from flask_login import login_required,login_user,logout_user,current_user
+from flask_login import login_required, login_user, logout_user, current_user
 from forms import LoginForm
 from user import get_user
 from passlib.hash import pbkdf2_sha256 as hasher
+
+
 def home_page():
     today = datetime.today()
     day_name = today.strftime("%A")
     return render_template("home.html", day=day_name)
 
+
 def product_page():
     db = current_app.config["db"]
     if request.method == "GET":
         products = db.get_products()
-        return render_template("products.html",products = sorted(products))
+        return render_template("products.html", products=sorted(products))
     else:
         if not current_user.is_admin:
             abort(401)
@@ -23,15 +26,19 @@ def product_page():
             db.delete_product(int(form_product_key))
         flash("%(num)d products deleted." % {"num": len(form_product_keys)})
         return redirect(url_for("product_page"))
+
+
 def customer_page():
     return render_template("customer.html")
+
 
 def selected_product_page(product_key):
     db = current_app.config["db"]
     product = db.get_product(product_key)
     if product is None:
         abort(404)
-    return render_template("product.html",product=product)
+    return render_template("product.html", product=product)
+
 
 @login_required
 def selected_product_edit_page(product_key):
@@ -40,8 +47,9 @@ def selected_product_edit_page(product_key):
         product = db.get_product(product_key)
         if product is None:
             abort(404)
-        values = {"name": product.name, "price": product.price, "amount": product.amount, "type": product.type, "brand": product.brand}
-        return render_template("product_edit.html",values=values)
+        values = {"name": product.name, "price": product.price, "amount": product.amount, "type": product.type,
+                  "brand": product.brand}
+        return render_template("product_edit.html", values=values)
     else:
         valid = validate_product_form(request.form)
         if not valid:
@@ -53,10 +61,11 @@ def selected_product_edit_page(product_key):
         form_amount = request.form.data["amount"]
         form_type = request.form.data["type"]
         form_brand = request.form.data["brand"]
-        product = Product(form_name, form_price,form_amount,form_type,form_brand)
+        product = Product(form_name, form_price, form_amount, form_type, form_brand)
         db = current_app.config["db"]
         db.update_product(product_key, product)
         return redirect(url_for("selected_product_page", product_key=product_key))
+
 
 @login_required
 def product_add_page():
@@ -65,7 +74,7 @@ def product_add_page():
     if request.method == "GET":
         values = {"name": "", "price": "", "amount": "", "type": "", "brand": ""}
         return render_template(
-            "product_edit.html",values=values
+            "product_edit.html", values=values
         )
     else:
         valid = validate_product_form(request.form)
@@ -78,16 +87,17 @@ def product_add_page():
         form_amount = request.form.data["amount"]
         form_type = request.form.data["type"]
         form_brand = request.form.data["brand"]
-        product = Product(form_name, form_price,form_amount,form_type,form_brand)
+        product = Product(form_name, form_price, form_amount, form_type, form_brand)
         db = current_app.config["db"]
         product_key = db.add_product(product)
         return redirect(url_for("product_page", product_key=product_key))
+
 
 def validate_product_form(form):
     form.data = {}
     form.errors = {}
 
-    form_name = form.get("name","").strip()
+    form_name = form.get("name", "").strip()
     if len(form_name) == 0:
         form.errors["name"] = "Name can not be blank."
     else:
@@ -130,6 +140,7 @@ def validate_product_form(form):
         form.data["brand"] = form_brand
 
     return len(form.errors) == 0
+
 
 def login_page():
     form = LoginForm()
