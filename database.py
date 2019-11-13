@@ -1,10 +1,10 @@
 from product import Product
 import psycopg2 as dbapi2
-import os
-#dsn = """user='xpucwaxi' password='biCAXcXGlmoh5JdJBgAsrHNaF3dBeadP'
-    #                     host='dumbo.db.elephantsql.com' port=5432 dbname='xpucwaxi'"""
+#import os
+#dsn = os.getenv('DATABASE_URL')
 
-dsn = os.getenv("DATABASE_URL")
+dsn = """user='xpucwaxi' password='biCAXcXGlmoh5JdJBgAsrHNaF3dBeadP'
+                         host='dumbo.db.elephantsql.com' port=5432 dbname='xpucwaxi'"""
 
 class Database:
     def __init__(self):
