@@ -6,13 +6,6 @@ import psycopg2 as dbapi2
 
 dsn = """user='xpucwaxi' password='biCAXcXGlmoh5JdJBgAsrHNaF3dBeadP'
                          host='dumbo.db.elephantsql.com' port=5432 dbname='xpucwaxi'"""
-=======
-import os
-#dsn = """user='xpucwaxi' password='biCAXcXGlmoh5JdJBgAsrHNaF3dBeadP'
-    #                     host='dumbo.db.elephantsql.com' port=5432 dbname='xpucwaxi'"""
-
-dsn = os.getenv("DATABASE_URL")
->>>>>>> 33d2558b621471150bb1d6dace1e1da50191b5b9
 
 class Database:
     def __init__(self):
