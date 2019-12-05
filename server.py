@@ -4,6 +4,7 @@ import views
 from database import Database
 from product import Product
 from user import get_user
+import os
 
 lm = LoginManager()
 @lm.user_loader
@@ -40,6 +41,6 @@ def create_app():
 app = create_app()
 if __name__ == "__main__":
 
-    #port = app.config.get("PORT", 5000)
-    app.run(host="0.0.0.0", port=5432, debug=True)
+    port = int(os.config.get("PORT", 5000))
+    app.run(host="0.0.0.0", port = port)
     #host="0.0.0.0", port=port
