@@ -1,17 +1,11 @@
 from product import Product
 import psycopg2 as dbapi2
 import os
-<<<<<<< HEAD
-dsn = """user='postgres' password='pg1234'
-                         host='localhost' port=5432 dbname='tracksonware'"""
-dsn = os.getenv("DATABASE_URL")
-=======
+#dsn = """user='postgres' password='pg1234'
+                         #host='localhost' port=5432 dbname='tracksonware'"""
+
 dsn = os.getenv('DATABASE_URL')
 
-#dsn = """user='xpucwaxi' password='biCAXcXGlmoh5JdJBgAsrHNaF3dBeadP'
- #                        host='dumbo.db.elephantsql.com' port=5432 dbname='xpucwaxi'"""
-
->>>>>>> 46a761358837d03b91eaac7f324b39c7f985d997
 class Database:
     def __init__(self):
         self.products = {}
