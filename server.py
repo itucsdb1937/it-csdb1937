@@ -41,5 +41,5 @@ app = create_app()
 if __name__ == "__main__":
 
     #port = app.config.get("PORT", 5000)
-    app.run(host="0.0.0.0", port=5432, debug=True)
+    app.run(host="ec2-54-228-252-67.eu-west-1.compute.amazonaws.com", port=5432, debug=True)
     #host="0.0.0.0", port=port
