@@ -1,7 +1,9 @@
 from product import Product
 import psycopg2 as dbapi2
+import os
 dsn = """user='postgres' password='pg1234'
                          host='localhost' port=5432 dbname='tracksonware'"""
+dsn = os.getenv("DATABASE_URL")
 class Database:
     def __init__(self):
         self.products = {}
