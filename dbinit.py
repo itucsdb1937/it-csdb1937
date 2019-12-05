@@ -11,8 +11,8 @@ INIT_STATEMENTS = [
         PRICE DOUBLE NOT NULL,
         AMOUNT INTEGER NOT NULL,
         TYPE VARCHAR(10),
-        BRAND VARCHAR(20) NOT NULL)''',
-    "INSERT INTO PRODUCTS VALUES ('Computer',34,12,'Electronic','Asus')",
+        BRAND VARCHAR(20) NOT NULL)'''
+
 ]
 
 
